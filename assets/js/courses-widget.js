@@ -25,6 +25,7 @@
 
 		more.on('click', function () {
 
+
 		});
 
 		body.on('click', '.stm-breadcrumb-clear', function () {

@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ms-lms-starter-theme" />
     <orderEntry type="module" module-name="wordpress-starter" />
+    <orderEntry type="module" module-name="coveo" />
   </component>
 </module>

@@ -24,7 +24,7 @@
             $args       = array(
                 'taxonomy'   => 'stm_category',
                 'count'      => true,
-                'number'     => 5,
+                'number'     => 100,
                 'hide_empty' => 1,
                 'parent'     => 0,
                 'update_term_meta_cache' => false
