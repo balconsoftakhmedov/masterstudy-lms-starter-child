@@ -7,6 +7,7 @@
 			search     = ".stm-main-section-courses #stm-form-courses-search",
 			fields     = checkboxes + ", " + select,
 			more       = $( '.stm-course-filter__more.stm-course-filter-active' ),
+			less       = $( '.stm-course-filter__less' ),
 			body	   = $( 'body' );
 
 		body.on('change', fields, function () {
@@ -24,8 +25,14 @@
 		});
 
 		more.on('click', function () {
-
-
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-less').toggleClass('stm-more');
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-course-filter__less').toggleClass('stm-course-filter-active');
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-course-filter__more').toggleClass('stm-course-filter-active');
+		});
+		less.on('click', function () {
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-less').toggleClass('stm-more');
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-course-filter__less').toggleClass('stm-course-filter-active');
+			 $(this).closest('.stm-course-filter__wrapper').find('.stm-course-filter__more').toggleClass('stm-course-filter-active');
 		});
 
 		body.on('click', '.stm-breadcrumb-clear', function () {

@@ -7,8 +7,10 @@
     $label = $args[ 'label' ];
     $value = $args[ 'value' ];
     $count = $args[ 'count' ];
+	$i =  $args[ 'i' ];
+	$stm_more = $i >= 5 ? 'stm-less' : '';
 ?>
-<li class="stm-course-filter-value">
+<li class="stm-course-filter-value <?php echo $stm_more; ?>"  >
     <label class="stm-course-filter-value-label" role="group">
         <span class="stm-course-filter-value-label-wrapper">
             <input type="checkbox" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" />

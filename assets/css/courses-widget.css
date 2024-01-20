@@ -270,6 +270,10 @@
     display: block;
     line-height: 2.4;
 }
+.stm-course-filter__less.stm-course-filter-active{
+    display: block;
+    line-height: 2.4;
+}
 
 .stm-course-filter__more:after,
 .stm-course-filter__less:after{
@@ -841,4 +845,20 @@ ul.stm-breadcrumb-values{
 .stm-slider-container .irs--flat .irs-to:before,
 .stm-slider-container .irs--flat .irs-single:before{
     border-top-color: var(--filter-option);
+}
+
+.stm-course-filter-value.stm-less {
+     opacity: 0;
+    visibility: hidden;
+    height: 0;
+    max-height: 0;
+    pointer-events: none;
+}
+.stm-course-filter-value.stm-less.stm-more {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    max-height: 500px; /* Set a maximum height */
+    overflow: hidden;
+    transition: opacity 1s ease, visibility 0.5s ease, max-height 1s ease;
 }

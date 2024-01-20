@@ -44,6 +44,7 @@ if ( ! empty( $items ) ) :
 		<?php else : ?>
 			<ul class="stm-course-filter__values">
 				<?php
+				$counter = 0;
 				foreach ( $items as $item ) :
 					if ( $item instanceof WP_Term ) {
 						$item_data = array(
@@ -60,9 +61,12 @@ if ( ! empty( $items ) ) :
 								'count' => STM_CATALOG\Filters::get_acf_posts_count( $name, $item['value'] ),
 						);
 					}
+					$item_data['i']= $counter;
+
 					get_template_part( 'partials/filter', 'item', $item_data );
-					?>
-				<?php endforeach; ?>
+					$counter ++;
+				endforeach;
+				?>
 			</ul>
 			<div class="stm-course-filter__search">
 				<div class="stm-course-filter__search--magnifier" aria-hidden="false" style="display: block;">

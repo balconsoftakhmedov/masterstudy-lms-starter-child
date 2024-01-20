@@ -26,11 +26,11 @@
 
         wp_register_style( 'elementor-range-slider-widget', 'https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css', array() );
 
-        wp_register_style( 'elementor-courses-widget', get_stylesheet_directory_uri() . '/assets/css/courses-widget.css', array() );
+        wp_register_style( 'elementor-courses-widget', get_stylesheet_directory_uri() . '/assets/css/courses-widget.css', array(), time() );
 
         wp_register_script( 'elementor-range-slider-widget', 'https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js', array() );
 
-        wp_register_script( 'elementor-courses-widget', get_stylesheet_directory_uri() . '/assets/js/courses-widget.js', array() );
+        wp_register_script( 'elementor-courses-widget', get_stylesheet_directory_uri() . '/assets/js/courses-widget.js', array(), time() );
 
         wp_localize_script( 'elementor-courses-widget', 'stm_filter_ajax', array(
             'ajaxurl'          => admin_url( 'admin-ajax.php' ),
