@@ -98,7 +98,6 @@ jQuery(document).ready(function ($) {
 				selectedItems[stmName].push(valueToRemove);
 			}
 		});
-
 	}
 
 	function getLabel(value, availableTags) {

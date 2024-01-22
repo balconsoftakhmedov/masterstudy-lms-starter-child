@@ -40,14 +40,8 @@
             'nonce'            => wp_create_nonce('stm_course_filters'),
             '_wp_http_referer' => remove_query_arg( '_wp_http_referer' )
         ) );
-		wp_register_script( 'stm-search', get_stylesheet_directory_uri() . '/assets/js/search1.js', array('jquery', 'jquery-ui-autocomplete', 'elementor-courses-widget'), time() );
-		 wp_localize_script( 'stm-search', 'stm_filter_ajax', array(
-            'ajaxurl'          => admin_url( 'admin-ajax.php' ),
-            'error_message'    => esc_html__('An unexpected error occurred, please try again later', 'stm-volunteer-management'),
-            'action'           => 'stm_course_filters',
-            'nonce'            => wp_create_nonce('stm_course_filters'),
-            '_wp_http_referer' => remove_query_arg( '_wp_http_referer' )
-        ) );
+		wp_enqueue_script( 'stm-search', get_stylesheet_directory_uri() . '/assets/js/search1.js', array('jquery', 'jquery-ui-autocomplete', 'elementor-courses-widget'), time() );
+
     }
 
     add_action(  'wp_enqueue_scripts', 'mslmsstartertheme_child_enqueue_styles' );
