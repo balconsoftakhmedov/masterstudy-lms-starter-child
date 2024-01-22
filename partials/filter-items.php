@@ -42,7 +42,32 @@ if ( ! empty( $items ) ) :
 				/>
 			</div>
 		<?php else : ?>
-			<ul class="stm-course-filter__values">
+		<?php
+				$counter = 0;
+				$json_datas = [];
+				foreach ( $items as $item ) :
+					if ( $item instanceof WP_Term ) {
+						$item_data = array(
+								'name'  => $name,
+								'label' => $item->name,
+								'value' => $item->term_id,
+								'count' => $item->count,
+						);
+					} else {
+						$item_data = array(
+								'name'  => $name,
+								'label' => $item['label'],
+								'value' => $item['value'],
+								'count' => STM_CATALOG\Filters::get_acf_posts_count( $name, $item['value'] ),
+						);
+					}
+					$item_data['i']= $counter;
+					$json_datas[]=$item_data;
+					$counter ++;
+				endforeach;
+				?>
+			<ul  class="stm-course-filter__values" data-cat_name="<?php echo esc_attr( $name ); ?>"
+			data-filter-data="<?php echo esc_attr( json_encode( $json_datas ) ); ?>">
 				<?php
 				$counter = 0;
 				$json_datas = [];
@@ -70,9 +95,7 @@ if ( ! empty( $items ) ) :
 				?>
 
 			</ul>
-		<ul id="selectedItemsContainer" class="stm-course-filter__values_1" data-cat_name="<?php echo esc_attr( $name ); ?>"
-			data-filter-data="<?php echo esc_attr( json_encode( $json_datas ) ); ?>">
-		</ul>
+
 		<input id="condition" class="stm-condition<?php echo esc_attr( $name ); ?>" type="text" >
 
 			<div class="stm-course-filter__search">

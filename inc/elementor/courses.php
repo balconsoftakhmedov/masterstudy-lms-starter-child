@@ -13,7 +13,7 @@
 
         public function get_script_depends(): array
         {
-            return array( 'elementor-courses-widget', 'elementor-range-slider-widget' );
+            return array( 'elementor-courses-widget', 'elementor-range-slider-widget', 'stm-search' );
         }
 
         public function get_name(): string

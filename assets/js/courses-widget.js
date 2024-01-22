@@ -10,9 +10,10 @@
 			less       = $( '.stm-course-filter__less' ),
 			body	   = $( 'body' );
 
+
 		body.on('change', fields, function () {
 			let field = $(this);
-
+			console.log(field);
 			send_ajax( field );
 		});
 
