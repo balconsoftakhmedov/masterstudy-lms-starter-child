@@ -31,7 +31,14 @@ jQuery(document).ready(function ($) {
 				.append('<a><input type="checkbox"' + checked + ' value="' + item.value + '"/>' + item.label + '</a>')
 				.appendTo(ul);
 		};
-		;
+
+		$(container).on('change', '.stm-search input[type="checkbox"]', function () {
+			if (!$(this).prop('checked')) {
+				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'block');
+			}else{
+				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'none');
+			}
+		});
 	});
 
 
