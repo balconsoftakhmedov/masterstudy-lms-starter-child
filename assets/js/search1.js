@@ -87,6 +87,20 @@ jQuery(document).ready(function ($) {
 		}
 	});
 
+	$(document).on('click', function (event) {
+		let searchContainer = $('.stm-course-filter__search');
+		let container = $('.stm-course-filter__wrapper');
+
+		if (!searchContainer.is(event.target) && !searchContainer.has(event.target).length &&
+			!container.is(event.target) && !container.has(event.target).length) {
+
+			container.find('.stm-search input[type="checkbox"]').prop('checked', true);
+			container.closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'none');
+			container.find('.stm-search').css('display', 'block');
+		}
+	});
+
+
 	function createCheckboxHTML(name, value, label, count, stm_more) {
 		let checkboxHTML = `<li class="stm-course-filter-value ${stm_more}">
                             <label class="stm-course-filter-value-label" role="group">
