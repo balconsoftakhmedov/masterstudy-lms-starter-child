@@ -881,6 +881,8 @@ ul.stm-breadcrumb-values {
 	clear: none;
 	cursor: pointer;
 	color: #1d4f76;
+	position: absolute;
+    right: 8px;
 }
 
 .stm-course-filter__search--magnifier {

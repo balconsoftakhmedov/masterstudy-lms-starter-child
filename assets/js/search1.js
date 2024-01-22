@@ -58,6 +58,15 @@ jQuery(document).ready(function ($) {
 			if (!$(this).prop('checked')) {
 				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'block');
 				$(container).find('.stm-search').css('display', 'none');
+
+					var searchContainer = $(container).closest('.stm-course-filter__wrapper');
+					var clearButton = searchContainer.find('.stm-course-filter__search--clear');
+
+					if (searchContainer.find('.ui-autocomplete-input').val().trim() === '') {
+						clearButton.hide();
+					} else {
+						clearButton.show();
+					}
 			}else{
 				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'none');
 				$(container).find('.stm-search').css('display', 'block');
@@ -65,6 +74,18 @@ jQuery(document).ready(function ($) {
 		});
 	});
 
+	$('body').on('click', '.stm-course-filter__search--clear-svg', function () {
+		$(this).closest('.stm-course-filter__search').find('.ui-autocomplete-input').val('');
+	});
+	$('body').on('keyup', '.ui-autocomplete-input', function () {
+		let searchContainer = $(this).closest('.stm-course-filter__wrapper');
+		let clearButton = searchContainer.find('.stm-course-filter__search--clear');
+		if ($(this).val().trim() === '') {
+			clearButton.hide();
+		} else {
+			clearButton.show();
+		}
+	});
 
 	function createCheckboxHTML(name, value, label, count, stm_more) {
 		let checkboxHTML = `<li class="stm-course-filter-value ${stm_more}">

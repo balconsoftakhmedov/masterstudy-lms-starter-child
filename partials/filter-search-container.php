@@ -34,7 +34,7 @@ $name = $args['name'];
 	<div class="stm-course-filter__search--clear" title="Clear Search">
 		<svg focusable="false" enable-background="new 0 0 11 11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clear" class="stm-course-filter__search--clear-svg">
 			<title><?php _e( 'Clear', 'lms-starter-theme' ); ?></title>
-			<g fill="none">
+			<g fill="currentColor">
 				<path
 						d="m9.233 7.989-2.489-2.489 2.489-2.489c.356-.356.356-.889 0-1.244-.356-.356-.889-.356-1.244 0l-2.489 2.489-2.489-2.489c-.356-.356-.889-.356-1.244 0-.356.356-.356.889 0 1.244l2.489 2.489-2.489 2.489c-.356.356-.356.889 0 1.244.356.356.889.356 1.244 0l2.489-2.489 2.489 2.489c.356.356.889.356 1.244 0 .356-.355.356-.889 0-1.244z"
 				></path>
