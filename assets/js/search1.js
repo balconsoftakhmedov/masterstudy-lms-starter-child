@@ -17,7 +17,11 @@ jQuery(document).ready(function ($) {
 			select: function (event, ui) {
 				selectedItems[stmName].push(ui.item.value);
 				updateSelectedItems(filterData, container, stmName, ui.item.value);
-			}
+			},
+			open: function (event, ui) {
+
+        $(this).autocomplete("widget").addClass("stm-autocomplete-class");
+    }
 		}).focus(function () {
 			try {
 				$(this).autocomplete("search");
@@ -26,10 +30,28 @@ jQuery(document).ready(function ($) {
 			}
 		}).data("uiAutocomplete")._renderItem = function (ul, item) {
 			let checked = ($.inArray(item.value, selectedItems[stmName]) >= 0 ? 'checked' : '');
-			return $("<li></li>")
-				.data("item.autocomplete", item)
-				.append('<a><input type="checkbox"' + checked + ' value="' + item.value + '"/>' + item.label + '</a>')
-				.appendTo(ul);
+			$(ul).css('width', '300px');
+		let $li = $("<li class='stm-course-filter-value'></li>")
+        .data("item.autocomplete", item)
+        .append(
+            $('<label class="stm-course-filter-value-label" role="group"></label>').append(
+                $('<span class="stm-course-filter-value-label-wrapper"></span>').append(
+                    $('<input type="checkbox" name="categories" value="' + item.value + '" ' + checked + '></input>'),
+	                $(`<span class="stm-course-filter-value-checkbox" tabindex="0" role="button" aria-pressed="false"><svg focusable="false" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg" role="img" className="stm-course-filter-value-checkbox-svg">
+		                <title>Toggle</title>
+		                <g fill="currentColor">
+			                <path
+				                d="m10.252 2.213c-.155-.142-.354-.211-.573-.213-.215.005-.414.091-.561.24l-4.873 4.932-2.39-2.19c-.154-.144-.385-.214-.57-.214-.214.004-.415.09-.563.24-.148.147-.227.343-.222.549.005.207.093.4.249.542l2.905 2.662c.168.154.388.239.618.239h.022.003c.237-.007.457-.101.618-.266l5.362-5.428c.148-.148.228-.344.223-.551s-.093-.399-.248-.542z"></path>
+		                </g>
+	                </svg></span>`),
+                    $('<span class="stm-course-filter-value-caption" title="' + item.label + '"></span>').text(item.label),
+                    $('<span class="stm-course-filter-value-count"></span>').text(item.count)
+                )
+            )
+        )
+        .appendTo(ul);
+
+    return $li;
 		};
 
 		$(container).on('change', '.stm-search input[type="checkbox"]', function () {
