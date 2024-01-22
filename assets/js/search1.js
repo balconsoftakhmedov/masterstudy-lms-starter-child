@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
 	$('.stm-course-filter__values_1').each(function () {
 		let stmName = $(this).attr('data-cat_name');
 		let filterData = $(this).data('filter-data');
-
+		let container = this;
 		console.log(stmName, filterData);
 		let $conditionInput = jQuery('.stm-condition' + stmName);
 		//filterData = availableTags;
@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
 			minLength: 0,
 			select: function (event, ui) {
 				selectedItems.push(ui.item.value);
-				updateSelectedItems(filterData);
+				updateSelectedItems(filterData, container);
 			}
 		}).focus(function () {
 			try {
@@ -56,29 +56,6 @@ jQuery(document).ready(function ($) {
 		;
 	});
 
-	/*
-		jQuery('.stm-condition').autocomplete({
-			source: availableTags,
-			minLength: 0,
-			select: function (event, ui) {
-				selectedItems.push(ui.item.value);
-				updateSelectedItems(availableTags);
-			}
-		}).focus(function () {
-			try {
-				jQuery(this).autocomplete("search");
-			} catch (e) {
-
-			}
-		}).data("uiAutocomplete")._renderItem = function (ul, item) {
-			var checked = ($.inArray(item.value, selectedItems) >= 0 ? 'checked' : '');
-			return $("<li></li>")
-				.data("item.autocomplete", item)
-				.append('<a><input type="checkbox"' + checked + ' value="' + item.value + '"/>' + item.label + '</a>')
-				.appendTo(ul);
-		};
-
-	*/
 
 	function createCheckboxHTML(name, value, label, count, stm_more) {
 		let checkboxHTML = `<li class="stm-course-filter-value ${stm_more}">
@@ -110,8 +87,8 @@ jQuery(document).ready(function ($) {
             </svg></span>`;
 	}
 
-	function updateSelectedItems(availableTags) {
-		let existingCheckboxes = $('#selectedItemsContainer').find('input[type="checkbox"]').toArray();
+	function updateSelectedItems(availableTags, container) {
+		let existingCheckboxes = $(container).find('input[type="checkbox"]').toArray();
 
 		let existingValues = {};
 
@@ -125,7 +102,7 @@ jQuery(document).ready(function ($) {
 			let value = selectedItems[i];
 
 			if (existingValues.hasOwnProperty(value)) {
-				$('#selectedItemsContainer').find('input[value="' + value + '"]').closest('li.stm-course-filter-value').remove();
+				$(container).find('input[value="' + value + '"]').closest('li.stm-course-filter-value').remove();
 			}
 			console.log(availableTags);
 			let name = getName(value, availableTags) ? getName(value, availableTags) : 'your_name';
@@ -135,26 +112,26 @@ jQuery(document).ready(function ($) {
 
 			let checkboxHTML = createCheckboxHTML(name, value, label, count, stm_more);
 
-			$('#selectedItemsContainer').prepend(checkboxHTML);
+			$(container).prepend(checkboxHTML);
 		}
 
-		let sortedCheckboxes = $('#selectedItemsContainer').find('li.stm-course-filter-value').toArray();
+		let sortedCheckboxes = $(container).find('li.stm-course-filter-value').toArray();
 		sortedCheckboxes.sort(function (a, b) {
 			let aValue = $(a).find('.stm-course-filter-value-caption').text();
 			let bValue = $(b).find('.stm-course-filter-value-caption').text();
 			return aValue.localeCompare(bValue);
 		});
 
-		$('#selectedItemsContainer').empty().append(sortedCheckboxes);
+		$(container).empty().append(sortedCheckboxes);
 
 		setTimeout(function () {
 			$('#condition').val('');
 		}, 100);
 
-		$('#selectedItemsContainer').on('change', 'input[type="checkbox"]', function () {
+		$(container).on('change', 'input[type="checkbox"]', function () {
 			let valueToRemove = $(this).val();
 			selectedItems = selectedItems.filter(item => item != valueToRemove);
-			updateSelectedItems();
+			updateSelectedItems(availableTags, container);
 		});
 	}
 
