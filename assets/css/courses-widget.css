@@ -861,4 +861,5 @@ ul.stm-breadcrumb-values{
     max-height: 500px; /* Set a maximum height */
     overflow: hidden;
     transition: opacity 1s ease, visibility 0.5s ease, max-height 1s ease;
+        pointer-events: all;
 }

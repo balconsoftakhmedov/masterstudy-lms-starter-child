@@ -45,6 +45,7 @@ if ( ! empty( $items ) ) :
 			<ul class="stm-course-filter__values">
 				<?php
 				$counter = 0;
+				$json_datas = [];
 				foreach ( $items as $item ) :
 					if ( $item instanceof WP_Term ) {
 						$item_data = array(
@@ -62,12 +63,18 @@ if ( ! empty( $items ) ) :
 						);
 					}
 					$item_data['i']= $counter;
-
+					$json_datas[]=$item_data;
 					get_template_part( 'partials/filter', 'item', $item_data );
 					$counter ++;
 				endforeach;
 				?>
+
 			</ul>
+		<ul id="selectedItemsContainer" class="stm-course-filter__values_1" data-cat_name="<?php echo esc_attr( $name ); ?>"
+			data-filter-data="<?php echo esc_attr( json_encode( $json_datas ) ); ?>">
+		</ul>
+		<input id="condition" class="stm-condition<?php echo esc_attr( $name ); ?>" type="text" placeholder="condition">
+
 			<div class="stm-course-filter__search">
 				<div class="stm-course-filter__search--magnifier" aria-hidden="false" style="display: block;">
 					<svg focusable="false" enable-background="new 0 0 20 20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="<?php esc_attr_e( 'Search', 'lms-starter-theme' ); ?>" class="stm-course-filter__search--magnifier-svg">
