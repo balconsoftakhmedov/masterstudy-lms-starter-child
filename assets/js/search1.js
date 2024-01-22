@@ -35,8 +35,10 @@ jQuery(document).ready(function ($) {
 		$(container).on('change', '.stm-search input[type="checkbox"]', function () {
 			if (!$(this).prop('checked')) {
 				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'block');
+				$(container).find('.stm-search').css('display', 'none');
 			}else{
 				$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'none');
+				$(container).find('.stm-search').css('display', 'block');
 			}
 		});
 	});
@@ -105,6 +107,11 @@ jQuery(document).ready(function ($) {
 				selectedItems[stmName].push(valueToRemove);
 			}
 		});
+
+		$(container).find('.stm-search input[type="checkbox"]').prop('checked', true);
+		$(container).closest('.stm-course-filter__wrapper').find('.stm-course-filter__search').css('display', 'none');
+		$(container).find('.stm-search').css('display', 'block');
+
 	}
 
 	function getLabel(value, availableTags) {

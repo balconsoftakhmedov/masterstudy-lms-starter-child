@@ -199,12 +199,12 @@
 }
 
 .stm-course-filter__search{
-    border: thin solid #7e8c9a;
+    border: 1px solid var(--border-color);
     border-radius: 2px;
     position: relative;
     background: white;
     display: none;
-    margin: 2px 20px 1px;
+
     padding: 4px;
     animation: grow 0.3s linear;
 }
@@ -862,4 +862,29 @@ ul.stm-breadcrumb-values{
     overflow: hidden;
     transition: opacity 1s ease, visibility 0.5s ease, max-height 1s ease;
         pointer-events: all;
+}
+
+
+.stm-course-filter__search--wait-animation {
+    display: none;
+}
+
+.stm-course-filter__search--clear {
+    float: right;
+    margin-right: 3px;
+    cursor: pointer;
+    opacity: 0.5;
+    clear: none;
+    cursor: pointer;
+    color: #1d4f76;
+}
+
+.stm-course-filter__search--magnifier {
+    float: left;
+
+}
+
+.stm-course-filter__search--middle {
+    overflow: hidden;
+    line-height: 19px;
 }
