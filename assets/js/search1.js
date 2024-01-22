@@ -1,44 +1,22 @@
 jQuery(document).ready(function ($) {
-	var selectedItems = [];
-
-	var availableTags = [
-		{value: 1, label: "ActionScript"},
-		{value: 2, label: "AppleScript"},
-		{value: 3, label: "Asp"},
-		{value: 4, label: "BASIC"},
-		{value: 5, label: "C"},
-		{value: 6, label: "C++"},
-		{value: 7, label: "Clojure"},
-		{value: 8, label: "COBOL"},
-		{value: 9, label: "ColdFusion"},
-		{value: 10, label: "Erlang"},
-		{value: 11, label: "Fortran"},
-		{value: 12, label: "Groovy"},
-		{value: 13, label: "Haskell"},
-		{value: 14, label: "Java"},
-		{value: 15, label: "JavaScript"},
-		{value: 16, label: "Lisp"},
-		{value: 17, label: "Perl"},
-		{value: 18, label: "PHP"},
-		{value: 19, label: "Python"},
-		{value: 20, label: "Ruby"},
-		{value: 21, label: "Scala"},
-		{value: 22, label: "Scheme"}
-	];
+	var selectedItems = {};
 
 	$('.stm-course-filter__values_1').each(function () {
 		let stmName = $(this).attr('data-cat_name');
 		let filterData = $(this).data('filter-data');
 		let container = this;
+		if (!selectedItems[stmName]) {
+			selectedItems[stmName] = [];
+		}
 		console.log(stmName, filterData);
 		let $conditionInput = jQuery('.stm-condition' + stmName);
-		//filterData = availableTags;
+
 		$conditionInput.autocomplete({
 			source: filterData,
 			minLength: 0,
 			select: function (event, ui) {
-				selectedItems.push(ui.item.value);
-				updateSelectedItems(filterData, container);
+				selectedItems[stmName].push(ui.item.value);
+				updateSelectedItems(filterData, container, stmName);
 			}
 		}).focus(function () {
 			try {
@@ -47,7 +25,7 @@ jQuery(document).ready(function ($) {
 
 			}
 		}).data("uiAutocomplete")._renderItem = function (ul, item) {
-			let checked = ($.inArray(item.value, selectedItems) >= 0 ? 'checked' : '');
+			let checked = ($.inArray(item.value, selectedItems[stmName]) >= 0 ? 'checked' : '');
 			return $("<li></li>")
 				.data("item.autocomplete", item)
 				.append('<a><input type="checkbox"' + checked + ' value="' + item.value + '"/>' + item.label + '</a>')
@@ -87,7 +65,7 @@ jQuery(document).ready(function ($) {
             </svg></span>`;
 	}
 
-	function updateSelectedItems(availableTags, container) {
+	function updateSelectedItems(availableTags, container, stmName) {
 		let existingCheckboxes = $(container).find('input[type="checkbox"]').toArray();
 
 		let existingValues = {};
@@ -131,7 +109,7 @@ jQuery(document).ready(function ($) {
 		$(container).on('change', 'input[type="checkbox"]', function () {
 			let valueToRemove = $(this).val();
 			selectedItems = selectedItems.filter(item => item != valueToRemove);
-			updateSelectedItems(availableTags, container);
+			updateSelectedItems(availableTags, container, stmName);
 		});
 	}
 
