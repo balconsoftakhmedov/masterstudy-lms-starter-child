@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
 		if (!selectedItems[stmName]) {
 			selectedItems[stmName] = [];
 		}
-		console.log(stmName, filterData);
+
 		let $conditionInput = jQuery('.stm-condition' + stmName);
 
 		$conditionInput.autocomplete({
@@ -100,9 +100,9 @@ jQuery(document).ready(function ($) {
 		});
 
 		$(container).empty().append(sortedCheckboxes);
-
+		let $conditionInput = $('.stm-condition' + stmName);
 		setTimeout(function () {
-			$('#condition').val('');
+			$conditionInput.val('');
 		}, 100);
 
 		$(container).on('change', 'input[type="checkbox"]', function () {
