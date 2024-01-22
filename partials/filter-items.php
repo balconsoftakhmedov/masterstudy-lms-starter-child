@@ -73,7 +73,7 @@ if ( ! empty( $items ) ) :
 		<ul id="selectedItemsContainer" class="stm-course-filter__values_1" data-cat_name="<?php echo esc_attr( $name ); ?>"
 			data-filter-data="<?php echo esc_attr( json_encode( $json_datas ) ); ?>">
 		</ul>
-		<input id="condition" class="stm-condition<?php echo esc_attr( $name ); ?>" type="text" placeholder="condition">
+		<input id="condition" class="stm-condition<?php echo esc_attr( $name ); ?>" type="text" >
 
 			<div class="stm-course-filter__search">
 				<div class="stm-course-filter__search--magnifier" aria-hidden="false" style="display: block;">

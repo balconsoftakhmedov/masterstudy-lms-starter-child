@@ -76,13 +76,12 @@ jQuery(document).ready(function ($) {
 			existingValues[value] = label;
 		});
 
-		for (let i = 0; i < selectedItems.length; i++) {
-			let value = selectedItems[i];
+		for (let i = 0; i < selectedItems[stmName].length; i++) {
+			let value = selectedItems[stmName][i];
 
 			if (existingValues.hasOwnProperty(value)) {
 				$(container).find('input[value="' + value + '"]').closest('li.stm-course-filter-value').remove();
 			}
-			console.log(availableTags);
 			let name = getName(value, availableTags) ? getName(value, availableTags) : 'your_name';
 			let label = getLabel(value, availableTags);
 			let count = getCount(value, availableTags) ? getCount(value, availableTags) : 0;
@@ -108,10 +107,11 @@ jQuery(document).ready(function ($) {
 
 		$(container).on('change', 'input[type="checkbox"]', function () {
 			let valueToRemove = $(this).val();
-			selectedItems = selectedItems.filter(item => item != valueToRemove);
+			selectedItems[stmName] = selectedItems[stmName].filter(item => item !== valueToRemove);
 			updateSelectedItems(availableTags, container, stmName);
 		});
 	}
+
 
 
 	function getLabel(value, availableTags) {
