@@ -92,12 +92,11 @@ if ( ! empty( $items ) ) :
 					get_template_part( 'partials/filter', 'item', $item_data );
 					$counter ++;
 				endforeach;
+				get_template_part( 'partials/filter', 'search', $item_data );
 				?>
 
 			</ul>
-
 		<input id="condition" class="stm-condition<?php echo esc_attr( $name ); ?>" type="text" >
-
 			<div class="stm-course-filter__search">
 				<div class="stm-course-filter__search--magnifier" aria-hidden="false" style="display: block;">
 					<svg focusable="false" enable-background="new 0 0 20 20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="<?php esc_attr_e( 'Search', 'lms-starter-theme' ); ?>" class="stm-course-filter__search--magnifier-svg">
