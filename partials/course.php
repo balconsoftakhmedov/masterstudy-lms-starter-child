@@ -29,12 +29,14 @@
                         <?php the_post_thumbnail( 'medium' ); ?>
                     </div>
                 <?php endif; ?>
+<?php
 
+$stm_url = ( !empty(get_field( '_external_link' ) ))? get_field( '_external_link' ): $permalink; ?>
                 <div class="stm-course-info__inside">
                     <div class="stm-course-title">
                         <a
                             class="stm-course-link"
-                            href="<?php echo esc_url( get_field( '_external_link' ) ); ?>"
+                            href="<?php echo esc_url( $stm_url ); ?>"
                             tabindex="0"
                             aria-label="<?php echo esc_attr( get_the_title() ); ?>"
                             title="<?php echo esc_attr( get_the_title() ); ?>">
